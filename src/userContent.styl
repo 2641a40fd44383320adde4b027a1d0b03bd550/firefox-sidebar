@@ -1,0 +1,96 @@
+@import 'global';
+
+@-moz-document regexp("moz-extension://.*/sidebar/sidebar.html.*") {
+	:root {
+		// extension
+		--tab-border-radius-size: var(--theme-border-radius) !important;
+
+		--theme-sidebar-width: calc(var(--theme-spacing) * 2 + (var(--theme-icon-size) + var(--theme-icon-pad) * 2) * 8);
+		--theme-button-size: calc(var(--theme-icon-size) + var(--theme-icon-pad) * 2);
+		--theme-urlbar-height: calc(1em + var(--theme-spacing) * 2);
+	}
+
+	#tabbar {
+		margin: var(--pinned-tabs-area-size) var(--theme-spacing) 0 var(--theme-spacing) !important;
+		/*flex-direction: column-reverse;
+		bottom: unset !important;*/
+	}
+	tab {
+		&-favicon {
+			margin: 0 !important;
+		}
+		&-label {
+			margin-left: 1ch !important;
+		}
+		&-item {
+			/*&[class*="contextual-identity-firefox-container-"][data-level="0"] {
+				&::before {
+					content: attr(data-contextual-identity-name);
+					padding-top: 0.5em;
+					margin: 0.25em 0;
+					border-top: 1px solid var(--in-content-border-color);
+				}
+				& ~ &[data-level="0"]::before {
+					display: none;
+				}
+			}*/
+
+			&:not(.pinned) > &-substance {
+				padding: var(--theme-spacing) !important;
+			}
+			&.active .background {
+				box-shadow: 0 2px 2px var(--browser-tab-highlighter, var(--tab-active-border-near)) !important;
+			}
+		}
+		&-closebox {
+			padding: 0 !important;
+			margin: 0 !important;
+
+			&::before {
+				border-radius: var(--theme-border-radius) !important;
+			}
+		}
+		&-item:not(:hover) &-closebox {
+			display: none;
+		}
+
+		&-twisty {
+			position: absolute !important;
+		}
+		&-item {
+			&[data-child-ids]:hover tab-favicon {
+				visibility: hidden;
+			}
+			&:not(:hover) tab-twisty {
+				display: none !important;
+			}
+		}
+	}
+
+	.newtab {
+		&-button {
+			text-align: left !important;
+
+			&-box::after {
+				content: 'New Tab';
+				position: absolute;
+				left: calc(var(--svg-small-icon-size) + var(--theme-spacing) + 1ch);
+				height: 100%;
+				display: flex;
+				align-items: center;
+			}
+		}
+		&-action-selector-anchor {
+			padding: 0 !important;
+
+			&::after {
+				margin: auto !important;
+			}
+		}
+	}
+	.after-tabs {
+		button, [role="button"] {
+			padding: var(--theme-spacing) !important;
+		}
+	}
+}

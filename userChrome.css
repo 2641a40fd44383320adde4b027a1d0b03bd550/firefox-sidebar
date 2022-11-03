@@ -1,0 +1,120 @@
+:root {
+  --theme-spacing: 8px;
+  --theme-icon-size: 16px;
+  --theme-icon-pad: 8px;
+  --theme-border-radius: 8px;
+}
+:root {
+  --theme-sidebar-width: calc(var(--theme-spacing) * 2 + (var(--theme-icon-size) + var(--theme-icon-pad) * 2) * 8);
+  --theme-button-size: calc(var(--theme-icon-size) + var(--theme-icon-pad) * 2);
+  --theme-urlbar-height: calc(1em + var(--theme-spacing) * 2);
+  --toolbarbutton-inner-padding: var(--theme-icon-pad) !important;
+  --toolbarbutton-border-radius: var(--theme-border-radius) !important;
+}
+#titlebar {
+  display: none !important;
+}
+#nav-bar {
+  --blah: calc(var(--theme-spacing) + var(--theme-button-size));
+  top: var(--theme-spacing);
+  overflow: visible !important;
+  background: none !important;
+  box-shadow: none !important;
+  margin-left: var(--blah);
+  -moz-window-dragging: drag;
+}
+#nav-bar::before {
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--theme-sidebar-width);
+  height: calc(var(--theme-spacing) * 5 + var(--theme-icon-size) + var(--theme-urlbar-height));
+  -moz-window-dragging: drag;
+  z-index: -1;
+}
+#nav-bar toolbarbutton,
+#nav-bar toolbaritem {
+  padding: 0 !important;
+}
+#urlbar-container,
+#nav-bar {
+  position: absolute !important;
+  display: flex;
+}
+#reload-button > .toolbarbutton-icon,
+#stop-button > .toolbarbutton-icon {
+  padding: var(--toolbarbutton-inner-padding) !important;
+}
+#urlbar {
+  --urlbar-container-padding: 0 var(--theme-spacing);
+  --urlbar-margin-inline: 0px;
+  --urlbar-height: var(--theme-urlbar-height) !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: calc(var(--theme-sidebar-width) - var(--theme-spacing) * 2) !important;
+}
+#urlbar-container {
+  top: var(--blah);
+  margin-left: calc(var(--blah) * -1 + var(--theme-spacing)) !important;
+}
+#urlbar-input-container {
+  padding: var(--urlbar-container-padding) !important;
+}
+@supports -moz-bool-pref("userChrome.sidebar.move_autocompletion") {
+  #urlbar,
+  #urlbar-input-container {
+    height: var(--urlbar-height) !important;
+  }
+}
+.chromeUI #identity-icon-box {
+  padding-inline: var(--urlbar-icon-padding) !important;
+}
+.chromeUI #identity-icon-box:not(:hover) {
+  background-color: transparent !important;
+}
+#identity-icon-label {
+  display: none !important;
+}
+.urlbarView {
+  padding-inline: 5px;
+}
+@supports -moz-bool-pref("userChrome.sidebar.move_autocompletion") {
+  .urlbarView {
+    position: fixed !important;
+    left: calc(var(--theme-sidebar-width) + var(--theme-spacing));
+    top: var(--theme-spacing);
+    width: calc(100% - var(--theme-sidebar-width) - var(--theme-spacing) * 2) !important;
+    background-color: var(--toolbar-field-background-color);
+    background-clip: border-box;
+    border: 1px solid var(--toolbar-field-border-color);
+    border-radius: var(--toolbarbutton-border-radius);
+  }
+  .urlbarView-body-inner {
+    border-top: none !important;
+  }
+}
+#sidebar {
+  margin-top: calc(var(--theme-icon-size) + var(--theme-icon-pad) * 2 + var(--theme-urlbar-height) + var(--theme-spacing) * 3);
+  width: var(--theme-sidebar-width) !important;
+  min-width: unset !important;
+  max-width: unset !important;
+  display: block;
+}
+#sidebar-header {
+  position: absolute;
+  top: var(--theme-spacing);
+  left: var(--theme-spacing);
+  display: block;
+  padding: 0 !important;
+  border-bottom: none !important;
+}
+#sidebar-title,
+#sidebar-close,
+#sidebar-splitter,
+#sidebar-switcher-arrow {
+  display: none !important;
+}
+#sidebar-switcher-target {
+  padding: var(--theme-icon-pad) !important;
+}
